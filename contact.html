@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Salt & Crème — reach us on Instagram to place an order.">
-  <title>Contact — Salt & Crème</title>
+  <meta name="description" content="Contact Salt &amp; Crème to place an order. Orders need at least 48 hours notice. We reply within 24–48 hours.">
+  <title>Contact — Salt &amp; Crème</title>
+  <meta property="og:site_name" content="Salt &amp; Crème">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Salt &amp; Crème">
+  <meta property="og:description" content="Place an order or get in touch. Orders need at least 48 hours notice. We reply within 24–48 hours.">
+  <meta property="og:url" content="https://saltandcreme.co/contact.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://saltandcreme.co/contact.html">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -42,7 +51,8 @@
         <div style="max-width: 56ch;">
           <p style="color: var(--text-secondary);">The easiest way to reach us is a DM on Instagram. Use the form below to draft your message, then we'll copy it to your clipboard and open Instagram so you can paste it.</p>
 
-          <form id="contact-form" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;" novalidate>
+          <form id="contact-form" name="contact" netlify style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;" novalidate>
+            <input type="hidden" name="form-name" value="contact">
             <div>
               <label for="contact-name" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Your name</label>
               <input id="contact-name" type="text" name="name" autocomplete="name" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary); transition: border-color 0.2s;" placeholder="Crystal">

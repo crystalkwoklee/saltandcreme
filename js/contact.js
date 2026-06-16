@@ -22,6 +22,13 @@
       window.open('https://ig.me/m/saltandcreme', '_blank', 'noopener,noreferrer');
     }
 
+    // Submit to Netlify Forms in the background so you receive the inquiry by email
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ 'form-name': 'contact', name: name, cake: cake, message: message }).toString()
+    }).catch(function () {});
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text)
         .then(function () {
