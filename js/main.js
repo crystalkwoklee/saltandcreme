@@ -1,3 +1,5 @@
+gsap.registerPlugin(ScrollTrigger);
+
 /* ─── Fetch JSON helper ─── */
 async function fetchJSON(url) {
   try {

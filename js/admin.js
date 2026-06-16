@@ -3,6 +3,15 @@
 
   var ADMIN_EMAIL = 'crystal.k.lee2@gmail.com';
 
+  function esc(str) {
+    return String(str == null ? '' : str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   var loginForm    = document.getElementById('admin-login-form');
   var authSection  = document.getElementById('admin-auth-section');
   var dashboard    = document.getElementById('admin-dashboard');
@@ -75,14 +84,14 @@
     customerList.innerHTML = customers.map(function (c) {
       var stamps = Array.isArray(c.stamps) ? c.stamps : [];
       var count  = stamps.filter(Boolean).length;
-      return '<div style="display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--border-light);border-radius:4px;flex-wrap:wrap;" data-id="' + c.id + '">' +
+      return '<div style="display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid var(--border-light);border-radius:4px;flex-wrap:wrap;" data-id="' + esc(c.id) + '">' +
         '<div style="flex:1;min-width:12ch;">' +
-          '<p style="font-size:0.95rem;">' + (c.display_name || '—') + '</p>' +
-          '<p style="font-size:0.75rem;color:var(--text-secondary);">' + (c.email || '') + '</p>' +
+          '<p style="font-size:0.95rem;">' + esc(c.display_name || '—') + '</p>' +
+          '<p style="font-size:0.75rem;color:var(--text-secondary);">' + esc(c.email || '') + '</p>' +
         '</div>' +
         '<span style="color:var(--text-secondary);white-space:nowrap;">' + count + ' of 8 stamps</span>' +
-        '<button type="button" class="btn btn-ghost" style="font-size:0.82rem;" data-action="add" data-id="' + c.id + '">+1 cake</button>' +
-        '<button type="button" class="btn btn-ghost" style="font-size:0.82rem;" data-action="redeem" data-id="' + c.id + '" data-name="' + (c.display_name || c.email) + '">Mark redeemed</button>' +
+        '<button type="button" class="btn btn-ghost" style="font-size:0.82rem;" data-action="add" data-id="' + esc(c.id) + '">+1 cake</button>' +
+        '<button type="button" class="btn btn-ghost" style="font-size:0.82rem;" data-action="redeem" data-id="' + esc(c.id) + '" data-name="' + esc(c.display_name || c.email) + '">Mark redeemed</button>' +
       '</div>';
     }).join('');
 
