@@ -366,7 +366,12 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--primary-yellow);
 }
 
-#cta .btn-ghost:hover {
+.btn-ghost-sky {
+  border-color: var(--accent-sky);
+  color: var(--accent-sky);
+}
+
+#cta .btn-ghost-sky:hover {
   background: var(--accent-sky);
   color: var(--dark-burgundy);
   border-color: var(--accent-sky);
