@@ -1,27 +1,26 @@
 (function () {
   'use strict';
 
-  // TODO: Supabase integration here for persistence.
+  var TOTAL = 8;
+  var SAVED_KEY = 'sc_saved_cakes'; // gallery saves here; displayed until migrated to DB
 
-  var USER_KEY    = 'sc_user';      // plain name string — admin.js also reads this key
-  var PW_KEY      = 'sc_user_pw';   // encoded password
-  var SESSION_KEY = 'sc_session';   // sessionStorage: marks active login
-  var STAMPS_KEY  = 'sc_stamps';
-  var SAVED_KEY   = 'sc_saved_cakes';
-  var TOTAL       = 8;
-
+  // ── DOM refs ──────────────────────────────────────────────────────────────
   var signinSection  = document.getElementById('signin-section');
   var loyaltySection = document.getElementById('loyalty-section');
   var savedSection   = document.getElementById('saved-section');
   var signinForm     = document.getElementById('signin-form');
+  var emailField     = document.getElementById('email-field');
   var nameField      = document.getElementById('name-field');
   var confirmField   = document.getElementById('confirm-field');
+  var signinEmailEl  = document.getElementById('signin-email');
   var signinNameEl   = document.getElementById('signin-name');
   var signinPwEl     = document.getElementById('signin-password');
   var signinConfirm  = document.getElementById('signin-confirm');
   var signinDesc     = document.getElementById('signin-desc');
   var authError      = document.getElementById('auth-error');
   var signinBtn      = document.getElementById('signin-btn');
+  var toggleModeBtn  = document.getElementById('toggle-mode-btn');
+  var toggleModeText = document.getElementById('toggle-mode-text');
   var stampGrid      = document.getElementById('stamp-grid');
   var stampProgress  = document.getElementById('stamp-progress');
   var redeemBtn      = document.getElementById('redeem-btn');
@@ -29,64 +28,99 @@
   var authTitle      = document.querySelector('#account-auth h1');
   var logoutBtn      = document.getElementById('logout-btn');
 
-  function getUser()    { return localStorage.getItem(USER_KEY) || null; }
-  function getPw()      { return localStorage.getItem(PW_KEY) || null; }
-  function getStamps()  { try { return JSON.parse(localStorage.getItem(STAMPS_KEY) || '[]'); } catch (e) { return []; } }
-  function setStamps(s) { localStorage.setItem(STAMPS_KEY, JSON.stringify(s)); }
-  function getSaved()   { try { return JSON.parse(localStorage.getItem(SAVED_KEY)  || '[]'); } catch (e) { return []; } }
+  var currentUser    = null;
+  var currentProfile = null;
+  var mode           = 'signin'; // 'signin' | 'signup'
 
-  function encodePw(pw) {
-    try { return btoa(encodeURIComponent(pw + '·sc')); } catch (e) { return pw; }
-  }
-
+  // ── Error helpers ─────────────────────────────────────────────────────────
   function showError(msg) {
     if (authError) { authError.textContent = msg; authError.hidden = false; }
   }
-
   function clearError() {
     if (authError) authError.hidden = true;
   }
 
-  // ── Decide which auth state to show ───────────────────────────────────────
-  var storedName = getUser();
-  var storedPw   = getPw();
-  var inSession  = sessionStorage.getItem(SESSION_KEY) === '1';
-
-  if (inSession && storedName && storedPw) {
-    showLoggedIn(storedName);
-  } else if (storedName && storedPw) {
-    configureSignIn(storedName);    // returning user: show password only
-  } else if (storedName && !storedPw) {
-    configureSetPassword(storedName); // legacy user: ask to add a password
-  } else {
-    configureCreateAccount();         // first time
+  // ── Mode switching (sign in ↔ create account) ─────────────────────────────
+  function setMode(m) {
+    mode = m;
+    clearError();
+    if (m === 'signup') {
+      if (authTitle)    authTitle.textContent   = 'Create your account.';
+      if (signinDesc)   signinDesc.textContent  = 'Create an account to track your loyalty stamps from any device.';
+      if (nameField)    nameField.hidden        = false;
+      if (confirmField) confirmField.hidden     = false;
+      if (signinBtn)    signinBtn.textContent   = 'Create account';
+      if (toggleModeText) toggleModeText.textContent = 'Already have an account?';
+      if (toggleModeBtn)  toggleModeBtn.textContent  = 'Sign in';
+    } else {
+      if (authTitle)    authTitle.textContent   = 'Welcome back.';
+      if (signinDesc)   signinDesc.textContent  = 'Sign in to access your loyalty stamps.';
+      if (nameField)    nameField.hidden        = true;
+      if (confirmField) confirmField.hidden     = true;
+      if (signinBtn)    signinBtn.textContent   = 'Sign in';
+      if (toggleModeText) toggleModeText.textContent = "Don't have an account?";
+      if (toggleModeBtn)  toggleModeBtn.textContent  = 'Create one';
+    }
   }
 
-  function configureCreateAccount() {
-    if (authTitle)    authTitle.textContent = 'Create your account.';
-    if (signinDesc)   signinDesc.textContent = 'Set up a name and password to track your loyalty stamps. Saved to this device.';
-    if (nameField)    nameField.hidden    = false;
-    if (confirmField) confirmField.hidden = false;
-    if (signinBtn)    signinBtn.textContent = 'Create account';
-    if (signinNameEl) signinNameEl.setAttribute('required', '');
+  if (toggleModeBtn) {
+    toggleModeBtn.addEventListener('click', function () {
+      setMode(mode === 'signin' ? 'signup' : 'signin');
+    });
   }
 
-  function configureSetPassword(name) {
-    if (authTitle)    authTitle.textContent = 'One more step.';
-    if (signinDesc)   signinDesc.textContent = 'Welcome back, ' + name + '. Add a password to secure your account.';
-    if (nameField)    nameField.hidden    = true;
-    if (confirmField) confirmField.hidden = false;
-    if (signinBtn)    signinBtn.textContent = 'Save password';
-    if (signinNameEl) signinNameEl.removeAttribute('required');
-  }
+  // ── Bootstrap: check for existing session ────────────────────────────────
+  supabase.auth.getSession().then(function (result) {
+    if (result.data && result.data.session) {
+      loadProfile(result.data.session.user);
+    } else {
+      setMode('signin');
+    }
+  });
 
-  function configureSignIn(name) {
-    if (authTitle)    authTitle.textContent = 'Welcome back.';
-    if (signinDesc)   signinDesc.textContent = 'Enter your password to access your stamps, ' + name + '.';
-    if (nameField)    nameField.hidden    = true;
-    if (confirmField) confirmField.hidden = true;
-    if (signinBtn)    signinBtn.textContent = 'Sign in';
-    if (signinNameEl) signinNameEl.removeAttribute('required');
+  // React to auth events (login, logout, email confirmation redirect)
+  supabase.auth.onAuthStateChange(function (event, session) {
+    if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session) {
+      loadProfile(session.user);
+    } else if (event === 'SIGNED_OUT') {
+      currentUser    = null;
+      currentProfile = null;
+      if (signinSection)  signinSection.hidden  = false;
+      if (loyaltySection) loyaltySection.hidden = true;
+      if (savedSection)   savedSection.hidden   = true;
+      setMode('signin');
+    }
+  });
+
+  // ── Load profile from DB ──────────────────────────────────────────────────
+  function loadProfile(user) {
+    currentUser = user;
+    supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single()
+      .then(function (result) {
+        if (result.error || !result.data) {
+          // Trigger didn't create it yet — insert manually
+          supabase
+            .from('profiles')
+            .insert({
+              id: user.id,
+              display_name: (user.user_metadata && user.user_metadata.display_name) || '',
+              email: user.email
+            })
+            .select()
+            .single()
+            .then(function (r) {
+              currentProfile = r.data || { stamps: [] };
+              showLoggedIn(currentProfile.display_name || user.email);
+            });
+        } else {
+          currentProfile = result.data;
+          showLoggedIn(currentProfile.display_name || user.email);
+        }
+      });
   }
 
   // ── Form submit ───────────────────────────────────────────────────────────
@@ -95,42 +129,36 @@
       e.preventDefault();
       clearError();
 
-      var currentName = getUser();
-      var currentPw   = getPw();
+      var email   = signinEmailEl ? signinEmailEl.value.trim() : '';
+      var name    = signinNameEl  ? signinNameEl.value.trim()  : '';
+      var pw      = signinPwEl    ? signinPwEl.value           : '';
+      var confirm = signinConfirm ? signinConfirm.value        : '';
 
-      if (!currentName) {
-        // ─ Create account ─
-        var newName = signinNameEl ? signinNameEl.value.trim() : '';
-        var pw      = signinPwEl    ? signinPwEl.value : '';
-        var confirm = signinConfirm ? signinConfirm.value : '';
-        if (!newName)         { showError('Please enter your name.'); return; }
-        if (pw.length < 4)    { showError('Password must be at least 4 characters.'); return; }
-        if (pw !== confirm)   { showError('Passwords don\'t match. Try again.'); return; }
-        localStorage.setItem(USER_KEY, newName);
-        localStorage.setItem(PW_KEY, encodePw(pw));
-        sessionStorage.setItem(SESSION_KEY, '1');
-        showLoggedIn(newName);
+      if (!email) { showError('Please enter your email address.'); return; }
+      if (!pw)    { showError('Please enter your password.'); return; }
 
-      } else if (!currentPw) {
-        // ─ Set password (legacy user) ─
-        var pw      = signinPwEl    ? signinPwEl.value : '';
-        var confirm = signinConfirm ? signinConfirm.value : '';
-        if (pw.length < 4)  { showError('Password must be at least 4 characters.'); return; }
-        if (pw !== confirm)  { showError('Passwords don\'t match. Try again.'); return; }
-        localStorage.setItem(PW_KEY, encodePw(pw));
-        sessionStorage.setItem(SESSION_KEY, '1');
-        showLoggedIn(currentName);
+      if (mode === 'signup') {
+        if (!name)          { showError('Please enter your name.'); return; }
+        if (pw.length < 6)  { showError('Password must be at least 6 characters.'); return; }
+        if (pw !== confirm)  { showError("Passwords don't match. Try again."); return; }
+
+        supabase.auth.signUp({
+          email: email,
+          password: pw,
+          options: { data: { display_name: name } }
+        }).then(function (result) {
+          if (result.error) { showError(result.error.message); return; }
+          if (result.data.user && !result.data.session) {
+            // Email confirmation required
+            showError('Almost there! Check your email and click the confirmation link to finish creating your account.');
+          }
+        });
 
       } else {
-        // ─ Sign in ─
-        var pw = signinPwEl ? signinPwEl.value : '';
-        if (encodePw(pw) !== currentPw) {
-          showError('Incorrect password. Try again.');
-          if (signinPwEl) signinPwEl.value = '';
-          return;
-        }
-        sessionStorage.setItem(SESSION_KEY, '1');
-        showLoggedIn(currentName);
+        supabase.auth.signInWithPassword({ email: email, password: pw })
+          .then(function (result) {
+            if (result.error) { showError('Incorrect email or password. Try again.'); }
+          });
       }
     });
   }
@@ -148,19 +176,26 @@
   // ── Logout ────────────────────────────────────────────────────────────────
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function () {
-      sessionStorage.removeItem(SESSION_KEY);
-      if (signinSection)  signinSection.hidden  = false;
-      if (loyaltySection) loyaltySection.hidden = true;
-      if (savedSection)   savedSection.hidden   = true;
-      clearError();
-      var n = getUser(), p = getPw();
-      if (n && p) configureSignIn(n);
-      else if (n) configureSetPassword(n);
-      else configureCreateAccount();
+      supabase.auth.signOut();
     });
   }
 
   // ── Stamps ────────────────────────────────────────────────────────────────
+  function getStamps() {
+    return Array.isArray(currentProfile && currentProfile.stamps)
+      ? currentProfile.stamps
+      : [];
+  }
+
+  function saveStamps(stamps) {
+    if (!currentUser || !currentProfile) return;
+    currentProfile.stamps = stamps;
+    supabase
+      .from('profiles')
+      .update({ stamps: stamps, updated_at: new Date().toISOString() })
+      .eq('id', currentUser.id);
+  }
+
   function renderStamps() {
     if (!stampGrid) return;
     var stamps    = getStamps();
@@ -186,7 +221,7 @@
         var earned = !!stamps[idx];
         var btn    = document.createElement('button');
         btn.type   = 'button';
-        btn.setAttribute('aria-label',   'Stamp ' + (idx + 1) + ', ' + (earned ? 'earned' : 'not yet earned') + '. Click to toggle.');
+        btn.setAttribute('aria-label',   'Stamp ' + (idx + 1) + ', ' + (earned ? 'earned' : 'not yet earned') + '.');
         btn.setAttribute('aria-pressed', String(earned));
         btn.style.cssText = [
           'width:100%;aspect-ratio:1;',
@@ -203,10 +238,10 @@
         ].join('');
         btn.textContent = earned ? '✓' : String(idx + 1);
         btn.addEventListener('click', function () {
-          var s = getStamps();
+          var s = getStamps().slice();
           while (s.length <= idx) s.push(false);
           s[idx] = !s[idx];
-          setStamps(s);
+          saveStamps(s);
           renderStamps();
         });
         stampGrid.appendChild(btn);
@@ -214,7 +249,11 @@
     }
   }
 
-  // ── Saved cakes ───────────────────────────────────────────────────────────
+  // ── Saved cakes (localStorage — gallery.js writes here) ──────────────────
+  function getSaved() {
+    try { return JSON.parse(localStorage.getItem(SAVED_KEY) || '[]'); } catch (e) { return []; }
+  }
+
   function renderSaved() {
     if (!savedEl) return;
     var saved = getSaved();

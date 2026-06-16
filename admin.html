@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2G0GGM9D7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T2G0GGM9D7');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Salt & Crème admin — owner dashboard.">
@@ -14,7 +22,7 @@
     <div class="container">
       <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
         <span class="seal" aria-hidden="true">S&amp;C</span>
-        <span class="site-logo-text">Salt &amp; Crème</span>
+        <span class="site-logo-text"><span class="logo-upright">salt&amp;</span><span class="logo-italic">crème</span></span>
       </a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
@@ -37,10 +45,14 @@
         <h1 class="text-title mt-sm">Admin</h1>
         <form id="admin-login-form" style="margin-top: 2rem; max-width: 32ch; display: flex; flex-direction: column; gap: 1.5rem;">
           <div>
-            <label for="admin-password" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Password</label>
-            <input id="admin-password" type="password" name="password" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);">
+            <label for="admin-email" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Email</label>
+            <input id="admin-email" type="email" name="email" required autocomplete="email" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);">
           </div>
-          <p id="admin-error" style="color: #c0392b; font-size: 0.88rem; display: none;">Incorrect password.</p>
+          <div>
+            <label for="admin-password" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Password</label>
+            <input id="admin-password" type="password" name="password" required autocomplete="current-password" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);">
+          </div>
+          <p id="admin-error" style="color: #c0392b; font-size: 0.88rem; display: none;">Incorrect email or password.</p>
           <button type="submit" class="btn">Sign in</button>
         </form>
       </div>
@@ -80,12 +92,14 @@
     <div class="container">
       <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
         <span class="seal" aria-hidden="true">S&amp;C</span>
-        <span class="site-logo-text">Salt &amp; Crème</span>
+        <span class="site-logo-text"><span class="logo-upright">salt&amp;</span><span class="logo-italic">crème</span></span>
       </a>
       <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/main.js"></script>
   <script src="js/admin.js"></script>
 </body>
