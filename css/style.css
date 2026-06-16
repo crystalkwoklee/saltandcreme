@@ -1,4 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400&display=swap');
+/* ─── Hornbill (logo) ─── */
+@font-face {
+  font-family: 'Hornbill';
+  src: url('../fonts/Hornbill-Personal Use Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hornbill';
+  src: url('../fonts/Hornbill-Personal Use BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Cormorant Garamond (headings) ─── */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-SemiBoldItalic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── DM Sans (body & UI) ─── */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('../fonts/DMSans-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Libre Baskerville (body serif) ─── */
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/LibreBaskerville-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/LibreBaskerville-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/LibreBaskerville-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Pinyon Script (accent) ─── */
+@font-face {
+  font-family: 'Pinyon Script';
+  src: url('../fonts/PinyonScript-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ─── Custom Properties ─── */
 :root {
@@ -29,7 +177,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.7;
@@ -49,7 +197,7 @@ a:hover { border-bottom: 1px solid currentColor; }
 
 /* ─── Typography ─── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -61,7 +209,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.32em;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
 }
 
 /* ─── Layout ─── */
@@ -93,7 +241,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Hornbill', serif;
+  font-weight: 700;
   font-size: 0.65rem;
   color: var(--dark-burgundy);
   text-align: center;
@@ -129,10 +278,14 @@ h1, h2, h3, h4, h5, h6 {
 .site-logo:hover { border-bottom: none; }
 
 .site-logo-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Hornbill', serif;
+  font-weight: 700;
   font-size: 1.1rem;
   color: var(--dark-burgundy);
 }
+
+.logo-upright { font-style: normal; }
+.logo-italic  { font-style: italic; }
 
 .site-nav {
   display: flex;
@@ -192,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2px;
   background: var(--accent-blue);
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   letter-spacing: 0.06em;
@@ -539,7 +692,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--dark-burgundy);
   border: none;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   font-size: 0.88rem;
   letter-spacing: 0.04em;
@@ -583,7 +736,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pricing-card-price {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   color: var(--dark-burgundy);
   margin-top: 0.5rem;
@@ -720,7 +873,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .overlay-price {
   margin-top: 0.5rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   color: var(--accent-blue);
 }
@@ -950,7 +1103,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .plate-info-price {
   margin-top: 0.75rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.3rem;
   color: var(--accent-blue);
 }
