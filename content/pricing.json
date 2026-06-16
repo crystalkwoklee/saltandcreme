@@ -1,5 +1,5 @@
 {
-  "note": "No wedding surcharge — same price, same care. Optional delivery fee by location. Every cake is made to order in one kitchen.",
+  "note": "No wedding surcharge — same price, same care. Optional delivery fee depending on venue location. Every cake is made to order.",
   "cta": { "label": "Message to order", "href": "contact.html" },
   "modes": [
     {
@@ -9,30 +9,30 @@
         {
           "shape": "Round · 6 inch",
           "price": "From $65",
-          "serves": "Serves 6–8",
-          "description": "Chiffon — ao shiso, strawberry, or black sesame. Cloud-light, made the morning of pickup.",
-          "timeline": "48-hour notice"
+          "serves": "Serves 4-6",
+          "description": "Chiffon-style cake or basque-style cake. Cloud-light and smooth, made as close to pickup.",
+          "timeline": "1 week notice; notice given in less time incurs fees"
         },
         {
           "shape": "Round · 8 inch",
-          "price": "From $85",
+          "price": "From $95",
           "serves": "Serves 12–16",
-          "description": "The same chiffons, sized for a proper celebration. Layers stay airy at scale.",
-          "timeline": "48-hour notice"
+          "description": "The same chiffon/basque, sized for a larger celebration. Layers stay airy/melty at scale.",
+          "timeline": "1 week notice; notice given in less time incurs fees"
         },
         {
           "shape": "Round · 6 inch — honey",
-          "price": "From $90",
-          "serves": "Serves 6–8",
-          "description": "Ten-layer burnt honey, or a scorched basque. Slow cakes that set overnight.",
-          "timeline": "72-hour notice"
+          "price": "From $65",
+          "serves": "Serves 4-6",
+          "description": "Seven-layers of caramelized honey",
+          "timeline": "1 week notice; notice given in less time incurs fees"
         },
         {
           "shape": "Round · 8 inch — honey",
-          "price": "From $120",
+          "price": "From $95",
           "serves": "Serves 12–16",
-          "description": "The statement honey cake. Burnt honey cream, edges caramelized past the line.",
-          "timeline": "72-hour notice"
+          "description": "The statement honey cake. Signature honey cream, edges caramelized past the line.",
+          "timeline": "1 week notice; notice given in less time incurs fees"
         }
       ]
     },
@@ -42,31 +42,17 @@
       "cards": [
         {
           "shape": "Heart · 6 inch",
-          "price": "From $75",
-          "serves": "Serves 6–8",
+          "price": "From $70",
+          "serves": "Serves 4-6",
           "description": "Hand-shaped chiffon for birthdays and showers. Same flavors, softer silhouette.",
-          "timeline": "48-hour notice"
+          "timeline": "1 week notice; notice given in less time incurs fees"
         },
         {
           "shape": "Heart · 8 inch",
-          "price": "From $95",
-          "serves": "Serves 12–16",
-          "description": "A bigger heart for the room that needs one. Uneven by hand, on purpose.",
-          "timeline": "48-hour notice"
-        },
-        {
-          "shape": "Heart · 6 inch — honey",
           "price": "From $100",
-          "serves": "Serves 6–8",
-          "description": "Burnt honey or basque, shaped by hand. The slow cake, made tender.",
-          "timeline": "72-hour notice"
-        },
-        {
-          "shape": "Heart · 8 inch — honey",
-          "price": "From $130",
           "serves": "Serves 12–16",
-          "description": "The centerpiece. Ten layers, burnt honey cream, shaped into a heart.",
-          "timeline": "72-hour notice"
+          "description": "A bigger cake for a bigger heart",
+          "timeline": "1 week notice; notice given in less time incurs fees"
         }
       ]
     }
