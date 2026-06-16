@@ -61,8 +61,6 @@
 
             <!-- Left: plate + cake stage -->
             <div class="plate-stage-col">
-              <p class="plate-counter text-eyebrow" id="plate-counter" aria-live="polite"></p>
-
               <div class="plate-stage" role="img" aria-labelledby="plate-info-name">
                 <!-- Static plate (stays still, cake hops onto it) -->
                 <div class="plate-dish" aria-hidden="true">
@@ -76,6 +74,8 @@
 
               <!-- Dot navigation -->
               <div class="plate-dots" id="plate-dots" aria-label="Gallery progress"></div>
+
+              <p class="plate-counter text-eyebrow" id="plate-counter" aria-live="polite"></p>
             </div>
 
             <!-- Right: info panel -->
@@ -138,6 +138,8 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/gallery.js"></script>
 </body>
