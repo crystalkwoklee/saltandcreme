@@ -366,6 +366,12 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--primary-yellow);
 }
 
+#cta .btn-ghost:hover {
+  background: var(--accent-sky);
+  color: var(--dark-burgundy);
+  border-color: var(--accent-sky);
+}
+
 .btn:active { transform: scale(0.98); }
 
 .btn-ghost {
