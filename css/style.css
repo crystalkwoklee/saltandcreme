@@ -2,16 +2,16 @@
 
 /* ─── Custom Properties ─── */
 :root {
-  --primary-yellow:  #FAF0D2;
-  --accent-blue:     #1E50D3;
-  --accent-sky:      #C5E8F8;
-  --dark-burgundy:   #6B2D3E;
+  --primary-yellow:  #fff5cc;
+  --accent-blue:     #110bd6;
+  --accent-sky:      #abe2ff;
+  --dark-burgundy:   #69041d;
   --text-primary:    #6B2D3E;
   --text-secondary:  #8B6B7E;
-  --background:      #FEFDFB;
-  --border-light:    rgba(107, 45, 62, 0.12);
-  --hover-state:     #1E50D3;
-  --accent-light:    #C5E8F8;
+  --background:      #fffbf2;
+  --border-light:    #69041d;
+  --hover-state:     #110bd6;
+  --accent-light:    #abe2ff;
 
   --sp-xs:  0.5rem;
   --sp-sm:  1rem;
