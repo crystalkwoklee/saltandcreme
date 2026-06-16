@@ -1,0 +1,66 @@
+[
+  {
+    "id": "cake-01",
+    "name": "Honey Cake",
+    "note": "Ten layers, burnt honey",
+    "image": "images/cake-01.svg",
+    "description": "Ten thin layers with a burnt honey cream — caramelized at the edges, soft in the middle.",
+    "price_note": "From $85"
+  },
+  {
+    "id": "cake-02",
+    "name": "Basque Cheesecake",
+    "note": "Scorched top, custardy center",
+    "image": "images/cake-02.svg",
+    "description": "Intentionally scorched, impossibly creamy — no water bath, no apology.",
+    "price_note": "From $65"
+  },
+  {
+    "id": "cake-03",
+    "name": "Ao Shiso Chiffon",
+    "note": "Japanese green perilla",
+    "image": "images/cake-03.svg",
+    "description": "A barely-there herbal note in a cloud-light chiffon. Subtler than you expect.",
+    "price_note": "From $70"
+  },
+  {
+    "id": "cake-04",
+    "name": "Strawberry Chiffon",
+    "note": "Seasonal, made to order",
+    "image": "images/cake-04.svg",
+    "description": "Fresh strawberry folded into airy chiffon — peak season only, no extracts.",
+    "price_note": "From $70"
+  },
+  {
+    "id": "cake-05",
+    "name": "Black Sesame Chiffon",
+    "note": "Toasted, nutty, dark",
+    "image": "images/cake-05.svg",
+    "description": "Ground black sesame gives the crumb a slate-grey tint and a roasted depth.",
+    "price_note": "From $70"
+  },
+  {
+    "id": "cake-06",
+    "name": "Shokupan",
+    "note": "Japanese milk bread",
+    "image": "images/cake-06.svg",
+    "description": "Pillowy milk bread with a pull-apart top. Best eaten the day it's made.",
+    "price_note": "From $18"
+  },
+  {
+    "id": "cake-07",
+    "name": "Yuzu Cream Roll",
+    "note": "Bright, barely sweet",
+    "image": "images/cake-07.svg",
+    "description": "A sponge roll with yuzu-scented cream — clean citrus, not candy.",
+    "price_note": "From $55"
+  },
+  {
+    "id": "cake-08",
+    "name": "Hōjicha Basque",
+    "note": "Roasted green tea",
+    "image": "images/cake-08.svg",
+    "description": "All the burnished character of hōjicha in a barely-set basque — warm, bitter-edged, good.",
+    "price_note": "From $65"
+  }
+]

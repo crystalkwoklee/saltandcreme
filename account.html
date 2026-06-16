@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salt & Crème account — loyalty stamps and saved cakes.">
+  <title>Account — Salt & Crème</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Journal</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html" class="active" aria-current="page">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Auth state — localStorage auth added in Task 9 -->
+    <section class="section-sm" id="account-auth">
+      <div class="container">
+        <p class="text-eyebrow">Your account</p>
+        <h1 class="text-title mt-sm">Welcome back</h1>
+      </div>
+    </section>
+
+    <!-- Sign-in form (shown when not logged in) -->
+    <section class="section" id="signin-section" aria-label="Sign in">
+      <div class="container">
+        <div style="max-width: 40ch;">
+          <p id="signin-desc" style="color: var(--text-secondary);">Create a name and password to track your loyalty stamps. Everything saves to this device.</p>
+          <form id="signin-form" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+            <div id="name-field">
+              <label for="signin-name" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Your name</label>
+              <input id="signin-name" type="text" name="name" autocomplete="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);" placeholder="Crystal">
+            </div>
+            <div>
+              <label for="signin-password" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Password</label>
+              <input id="signin-password" type="password" name="password" autocomplete="current-password" required minlength="4" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);">
+            </div>
+            <div id="confirm-field" hidden>
+              <label for="signin-confirm" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Confirm password</label>
+              <input id="signin-confirm" type="password" name="confirm" autocomplete="new-password" minlength="4" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary);">
+            </div>
+            <p id="auth-error" style="color: #c0392b; font-size: 0.88rem; margin: 0;" hidden>Incorrect password.</p>
+            <button type="submit" class="btn" id="signin-btn">Create account</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loyalty card (shown when logged in) — added in Task 9 -->
+    <section class="section" id="loyalty-section" aria-label="Loyalty card" hidden>
+      <div class="container">
+        <p class="text-eyebrow">Your stamps</p>
+        <h2 class="text-title mt-sm">Loyalty card</h2>
+        <p id="stamp-progress" class="mt-sm" style="color: var(--text-secondary);">0 of 8 stamps. 8 more cakes to a free 6-inch birthday cake.</p>
+
+        <!-- 8-stamp grid — added in Task 9 -->
+        <div id="stamp-grid" role="group" aria-label="Loyalty stamps" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 360px; margin-top: 2rem;">
+          <!-- Stamps rendered by JS in Task 9 -->
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 1, not earned">1</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 2, not earned">2</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 3, not earned">3</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 4, not earned">4</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 5, not earned">5</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 6, not earned">6</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 7, not earned">7</div>
+          <div style="aspect-ratio: 1; background: var(--border-light); border-radius: 50%; display: flex; align-items: center; justify-content: center;" aria-label="Stamp 8, not earned">8</div>
+        </div>
+
+        <button id="redeem-btn" class="btn mt-lg" disabled style="opacity: 0.5; cursor: not-allowed;">Redeem reward</button>
+        <button id="logout-btn" class="btn btn-ghost" style="margin-top: 1rem;">Sign out</button>
+      </div>
+    </section>
+
+    <!-- Saved cakes — added in Task 9 -->
+    <section class="section" id="saved-section" aria-label="Saved cakes" hidden>
+      <div class="container">
+        <p class="text-eyebrow">Saved</p>
+        <h2 class="text-title mt-sm">Your saved cakes</h2>
+        <div id="saved-cakes" style="margin-top: 2rem;">
+          <!-- Empty state -->
+          <p style="color: var(--text-secondary);">You haven't saved any cakes yet. <a href="gallery.html">Browse the gallery</a> to get started.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>

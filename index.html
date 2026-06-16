@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salt & Crème — a microbakery in Mountlake Terrace, WA. Made to order, small batches.">
+  <title>Salt & Crème</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html" class="active" aria-current="page">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Journal</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero section — scroll-driven parallax (Task 2) -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="text-eyebrow hero-eyebrow reveal">Mountlake Terrace, WA</p>
+        <h1 class="text-display hero-title reveal" data-delay="1">Made to order.<br>One kitchen.</h1>
+        <p class="text-lede hero-lede reveal" data-delay="2">Chiffon cakes, honey cake, basque. Small batches. No shortcuts.</p>
+        <a href="gallery.html" class="btn hero-cta reveal" data-delay="3">See the cakes</a>
+      </div>
+    </section>
+
+    <!-- Featured bakes handscroll (Task 3) -->
+    <section class="handscroll" id="featured" aria-label="Featured bakes">
+      <div class="handscroll-sticky">
+        <div class="handscroll-head container">
+          <p class="text-eyebrow">This week</p>
+          <h2 class="text-title mt-sm">Featured bakes</h2>
+          <p class="handscroll-hint" aria-hidden="true">Scroll to glide &rarr;</p>
+        </div>
+        <div class="handscroll-viewport">
+          <div class="handscroll-track" id="handscroll-track">
+            <p style="color: var(--text-secondary); padding: 2rem;">Loading featured bakes…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature cards — reveal animations added in Task 4 -->
+    <section class="section" id="features" aria-label="Why Salt and Crème">
+      <div class="container">
+        <p class="text-eyebrow text-center">The approach</p>
+        <h2 class="text-title text-center mt-sm">Made differently</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 3rem;">
+          <div class="reveal" style="padding: 2rem; border: 1px solid var(--border-light); border-radius: 4px;">
+            <p class="text-eyebrow">Small batch</p>
+            <h3 class="mt-sm" style="font-size: 1.2rem;">One kitchen, limited orders</h3>
+            <p class="mt-sm" style="color: var(--text-secondary); font-size: 0.95rem;">The number of cakes going out each week is capped. That's not a constraint — it's what makes them good.</p>
+          </div>
+          <div class="reveal" data-delay="1" style="padding: 2rem; border: 1px solid var(--border-light); border-radius: 4px;">
+            <p class="text-eyebrow">Made to order</p>
+            <h3 class="mt-sm" style="font-size: 1.2rem;">Your cake, on its timeline</h3>
+            <p class="mt-sm" style="color: var(--text-secondary); font-size: 0.95rem;">Nothing sits in a case. Everything is made for the person who ordered it, for the date they need it.</p>
+          </div>
+          <div class="reveal" data-delay="2" style="padding: 2rem; border: 1px solid var(--border-light); border-radius: 4px;">
+            <p class="text-eyebrow">Specific flavors</p>
+            <h3 class="mt-sm" style="font-size: 1.2rem;">Not the usual</h3>
+            <p class="mt-sm" style="color: var(--text-secondary); font-size: 0.95rem;">Ao shiso, hōjicha, burnt honey. Flavors that are worth making because they're worth eating.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA — added in Task 4 -->
+    <section class="section-sm" id="cta" aria-label="Call to action" style="background: var(--dark-burgundy);">
+      <div class="container text-center">
+        <h2 class="text-title reveal" style="color: var(--primary-yellow);">Ready to order?</h2>
+        <p class="mt-sm reveal" data-delay="1" style="color: var(--accent-sky);">Browse the gallery, pick your cake, and reach out to get started.</p>
+        <div class="reveal" data-delay="2" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="gallery.html" class="btn">Browse gallery</a>
+          <a href="contact.html" class="btn btn-ghost" style="border-color: var(--accent-sky); color: var(--accent-sky);">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/handscroll.js"></script>
+</body>
+</html>

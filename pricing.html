@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salt & Crème — pricing for round and heart-shaped cakes made to order.">
+  <title>Pricing — Salt & Crème</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="pricing.html" class="active" aria-current="page">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Journal</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section-sm">
+      <div class="container">
+        <p class="text-eyebrow">Transparency</p>
+        <h1 class="text-title mt-sm">Pricing</h1>
+        <p class="mt-sm" style="color: var(--text-secondary);">No surcharges for weddings. Same price, same care.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Pricing options">
+      <div class="container">
+
+        <!-- Toggle buttons -->
+        <div id="pricing-toggle" class="pricing-toggle-group" role="group" aria-label="Cake shape">
+          <button type="button" class="pricing-toggle is-active" data-mode="round" aria-pressed="true">Round cakes</button>
+          <button type="button" class="pricing-toggle" data-mode="heart" aria-pressed="false">Heart-shaped cakes</button>
+        </div>
+
+        <!-- Cards (rendered from content/pricing.json) -->
+        <div id="pricing-cards" class="pricing-cards" aria-live="polite">
+          <p class="gallery-loading">Loading pricing…</p>
+        </div>
+
+        <!-- Notes -->
+        <div class="pricing-notes">
+          <p id="pricing-note">No wedding surcharge &mdash; same price, same care. Optional delivery fee by location.</p>
+          <a href="contact.html" class="btn mt-md">Message to order</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/pricing.js"></script>
+</body>
+</html>

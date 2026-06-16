@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salt & Crème — gallery of cakes made to order in Mountlake Terrace, WA.">
+  <title>Gallery — Salt & Crème</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="gallery.html" class="active" aria-current="page">Gallery</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Journal</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section-sm gallery-hero">
+      <div class="container">
+        <p class="text-eyebrow">The cakes</p>
+        <h1 class="text-title mt-sm">Gallery</h1>
+        <p class="mt-sm gallery-hero-sub">Made to order. Scroll to meet each one.</p>
+      </div>
+    </section>
+
+    <!-- ── Plate scroll gallery ───────────────────────────────────────────── -->
+    <section class="plate-gallery" id="plate-gallery-section">
+
+      <div class="plate-gallery-sticky">
+        <div class="container">
+          <div class="plate-scene">
+
+            <!-- Left: plate + cake stage -->
+            <div class="plate-stage-col">
+              <p class="plate-counter text-eyebrow" id="plate-counter" aria-live="polite"></p>
+
+              <div class="plate-stage" role="img" aria-labelledby="plate-info-name">
+                <!-- Static plate (stays still, cake hops onto it) -->
+                <div class="plate-dish" aria-hidden="true">
+                  <div class="plate-inner-rim"></div>
+                </div>
+                <!-- Cake that jumps on per scroll step -->
+                <div class="plate-cake" id="plate-cake" aria-hidden="true">
+                  <img id="plate-cake-img" src="images/cake-01.svg" alt="" width="210" height="200">
+                </div>
+              </div>
+
+              <!-- Dot navigation -->
+              <div class="plate-dots" id="plate-dots" aria-label="Gallery progress"></div>
+            </div>
+
+            <!-- Right: info panel -->
+            <div class="plate-info" id="plate-info">
+              <p class="text-eyebrow" id="plate-info-note"></p>
+              <h2 id="plate-info-name"></h2>
+              <p class="plate-info-desc" id="plate-info-desc"></p>
+              <p class="plate-info-price" id="plate-info-price"></p>
+              <a href="#gallery-all" class="btn btn-ghost" style="margin-top:2rem;align-self:flex-start;">Browse all ↓</a>
+            </div>
+
+          </div>
+
+          <p class="plate-scroll-hint" id="plate-scroll-hint" aria-hidden="true">↓ Scroll to explore</p>
+        </div>
+      </div>
+
+      <!-- Spacer: sets total scroll distance — height set in JS -->
+      <div class="plate-gallery-spacer" id="plate-gallery-spacer" aria-hidden="true"></div>
+    </section>
+
+    <!-- ── Browse all grid ────────────────────────────────────────────────── -->
+    <section class="section-sm" id="gallery-all" aria-label="All cakes">
+      <div class="container">
+        <p class="text-eyebrow">All cakes</p>
+        <h2 class="text-title mt-sm">Browse everything</h2>
+        <div id="gallery-grid" class="gallery-grid mt-md" aria-live="polite">
+          <p class="gallery-loading">Loading gallery…</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Moon-gate overlay -->
+  <div id="gallery-overlay"
+       class="gallery-overlay"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Cake detail"
+       aria-hidden="true">
+    <div class="gallery-overlay-card">
+      <button id="overlay-close" class="overlay-close" aria-label="Close overlay">&#x2715;</button>
+      <img id="overlay-img" class="overlay-img" src="" alt="">
+      <h2 id="overlay-name" class="overlay-name"></h2>
+      <p id="overlay-note" class="text-eyebrow overlay-note"></p>
+      <p id="overlay-desc" class="overlay-desc"></p>
+      <p id="overlay-price" class="overlay-price"></p>
+      <button id="overlay-save" class="btn overlay-save">Save this cake</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Salt & Crème — reach us on Instagram to place an order.">
+  <title>Contact — Salt & Crème</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Journal</a>
+        <a href="contact.html" class="active" aria-current="page">Contact</a>
+        <a href="account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section-sm">
+      <div class="container">
+        <p class="text-eyebrow">Get in touch</p>
+        <h1 class="text-title mt-sm">Contact</h1>
+      </div>
+    </section>
+
+    <!-- Contact — Instagram DM deep-link added in Task 8 -->
+    <section class="section" aria-label="Contact Salt and Crème">
+      <div class="container">
+        <div style="max-width: 56ch;">
+          <p style="color: var(--text-secondary);">The easiest way to reach us is a DM on Instagram. Use the form below to draft your message, then we'll copy it to your clipboard and open Instagram so you can paste it.</p>
+
+          <form id="contact-form" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1.5rem;" novalidate>
+            <div>
+              <label for="contact-name" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Your name</label>
+              <input id="contact-name" type="text" name="name" autocomplete="name" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary); transition: border-color 0.2s;" placeholder="Crystal">
+            </div>
+            <div>
+              <label for="contact-cake" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Which cake?</label>
+              <input id="contact-cake" type="text" name="cake" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary); transition: border-color 0.2s;" placeholder="Honey cake, 8 inch, for June 20th">
+            </div>
+            <div>
+              <label for="contact-message" style="display: block; font-size: 0.88rem; margin-bottom: 0.4rem;">Anything else?</label>
+              <textarea id="contact-message" name="message" rows="4" style="width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--border-light); border-radius: 3px; font-family: inherit; font-size: 1rem; background: var(--background); color: var(--text-primary); resize: vertical; transition: border-color 0.2s;" placeholder="Allergies, delivery, occasion…"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn" id="dm-btn">Copy &amp; open Instagram DM</button>
+              <p id="clipboard-feedback" style="font-size: 0.85rem; color: var(--accent-blue); margin-top: 0.75rem; display: none;">Message copied! Paste it into the Instagram DM.</p>
+            </div>
+          </form>
+
+          <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-secondary);">We'll reply within 24–48 hours. Orders need at least 48 hours notice (72 for honey cake).</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Salt & Crème home" style="border-bottom: none;">
+        <span class="seal" aria-hidden="true">S&amp;C</span>
+        <span class="site-logo-text">Salt &amp; Crème</span>
+      </a>
+      <p class="site-footer-copy">Mountlake Terrace, WA &mdash; Made to order</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
