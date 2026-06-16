@@ -360,6 +360,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 1.5px solid var(--accent-blue);
 }
 
+#cta .btn:hover {
+  color: var(--primary-yellow);
+  border-color: var(--primary-yellow);
+}
+
 .btn:active { transform: scale(0.98); }
 
 .btn-ghost {
@@ -423,6 +428,15 @@ h1, h2, h3, h4, h5, h6 {
 .hero-eyebrow { color: var(--text-secondary); }
 
 .hero-title { margin-top: var(--sp-sm); }
+
+.hero-title-script {
+  font-family: 'Pinyon Script', cursive;
+  font-weight: 400;
+  font-size: 1.35em;
+  display: block;
+  line-height: 1;
+  margin-bottom: -0.12em;
+}
 
 .hero-lede {
   margin-top: var(--sp-md);
@@ -993,7 +1007,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Cake that hops onto the plate */
 .plate-cake {
   position: absolute;
-  bottom: 72px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   width: 185px;
@@ -1138,7 +1152,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .plate-stage { width: 250px; height: 175px; }
   .plate-dish  { width: 230px; height: 72px; }
-  .plate-cake  { width: 140px; bottom: 58px; }
+  .plate-cake  { width: 140px; bottom: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
