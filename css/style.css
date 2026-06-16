@@ -361,7 +361,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #cta .btn:hover {
-  color: var(--primary-yellow);
+  background: var(--primary-yellow);
+  color: var(--dark-burgundy);
   border-color: var(--primary-yellow);
 }
 
@@ -435,7 +436,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.35em;
   display: block;
   line-height: 1;
-  margin-bottom: -0.12em;
+  margin-bottom: -0.25em;
 }
 
 .hero-lede {
