@@ -4,39 +4,39 @@
     "name": "Honey Cake",
     "note": "Ten layers, burnt honey",
     "image": "images/cake-01.svg",
-    "description": "Ten thin layers with a burnt honey cream — caramelized at the edges, soft in the middle.",
-    "price_note": "From $85"
+    "description": "Seven handmade layers with our signature honey cream — caramelized and fragrant, soft in the middle.",
+    "price_note": "From $65"
   },
   {
     "id": "cake-02",
     "name": "Basque Cheesecake",
-    "note": "Scorched top, custardy center",
+    "note": "Scorched top, custardy, melty center",
     "image": "images/cake-02.svg",
-    "description": "Intentionally scorched, impossibly creamy — no water bath, no apology.",
-    "price_note": "From $65"
+    "description": "Intentionally burnt for the nutty flavor, impossibly creamy and smooth, no apology.",
+    "price_note": "From $60"
   },
   {
     "id": "cake-03",
-    "name": "Ao Shiso Chiffon",
-    "note": "Japanese green perilla",
+    "name": "Sakura Lychee Chiffon",
+    "note": "Light, floral, fruity",
     "image": "images/cake-03.svg",
-    "description": "A barely-there herbal note in a cloud-light chiffon. Subtler than you expect.",
-    "price_note": "From $70"
+    "description": "A barely-there floral note in a cloud-light chiffon. Subtler than you expect.",
+    "price_note": "From $65"
   },
   {
     "id": "cake-04",
-    "name": "Strawberry Chiffon",
-    "note": "Seasonal, made to order",
+    "name": "Fresh Strawberry Chiffon",
+    "note": "Our most popular flavor",
     "image": "images/cake-04.svg",
-    "description": "Fresh strawberry folded into airy chiffon — peak season only, no extracts.",
-    "price_note": "From $70"
+    "description": "Airy chiffon with house-made preserves and handfuls of fresh strawberry, no extracts.",
+    "price_note": "From $65"
   },
   {
     "id": "cake-05",
-    "name": "Black Sesame Chiffon",
-    "note": "Toasted, nutty, dark",
+    "name": "Fresh Mango Chiffon",
+    "note": "Seasonally at it's best, made to order",
     "image": "images/cake-05.svg",
-    "description": "Ground black sesame gives the crumb a slate-grey tint and a roasted depth.",
+    "description": "Soft, sweet mango with fresh milk cream",
     "price_note": "From $70"
   },
   {
@@ -44,23 +44,23 @@
     "name": "Shokupan",
     "note": "Japanese milk bread",
     "image": "images/cake-06.svg",
-    "description": "Pillowy milk bread with a pull-apart top. Best eaten the day it's made.",
-    "price_note": "From $18"
+    "description": "Pillowy, stringy milk bread. Best eaten the day it's made.",
+    "price_note": "From $9"
   },
   {
     "id": "cake-07",
-    "name": "Yuzu Cream Roll",
-    "note": "Bright, barely sweet",
+    "name": "Lemon Raspberry Chiffon",
+    "note": "Bright, tart, summery",
     "image": "images/cake-07.svg",
-    "description": "A sponge roll with yuzu-scented cream — clean citrus, not candy.",
-    "price_note": "From $55"
+    "description": "Our airy chiffon with our house-made lemon curd and raspberry preserves",
+    "price_note": "From $65"
   },
   {
     "id": "cake-08",
-    "name": "Hōjicha Basque",
-    "note": "Roasted green tea",
+    "name": "Matcha Basque",
+    "note": "Imported matcha from Japan",
     "image": "images/cake-08.svg",
-    "description": "All the burnished character of hōjicha in a barely-set basque — warm, bitter-edged, good.",
+    "description": "All the malted character of matcha in a barely-set basque — warm, bitter-edged, good.",
     "price_note": "From $65"
   }
 ]
