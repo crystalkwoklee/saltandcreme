@@ -3,14 +3,18 @@
     "id": "cake-01",
     "name": "Honey Cake",
     "note": "Seven layers, caramelized honey",
+    "flavor_color": "#F8E070",
+    "card_width": 320,
     "image": "images/cake-01.svg",
-    "description": "Seven handmade layers with our signature honey cream — caramelized and fragrant, soft in the middle.",
+    "description": "Seven handmade layers with our signature honey cream, caramelized and fragrant, soft in the middle.",
     "price_note": "From $65"
   },
   {
     "id": "cake-02",
     "name": "Basque Cheesecake",
     "note": "Scorched top, custardy, melty center",
+    "flavor_color": "#E8C8A0",
+    "card_width": 260,
     "image": "images/cake-02.svg",
     "description": "Intentionally burnt for the nutty flavor, impossibly creamy and smooth, no apology.",
     "price_note": "From $60"
@@ -19,6 +23,8 @@
     "id": "cake-03",
     "name": "Sakura Lychee Chiffon",
     "note": "Light, floral, fruity",
+    "flavor_color": "#F2C8D4",
+    "card_width": 280,
     "image": "images/cake-03.svg",
     "description": "A barely-there floral note in a cloud-light chiffon. Subtler than you expect.",
     "price_note": "From $65"
@@ -27,6 +33,8 @@
     "id": "cake-04",
     "name": "Fresh Strawberry Chiffon",
     "note": "Our most popular flavor",
+    "flavor_color": "#F8D0D8",
+    "card_width": 340,
     "image": "images/cake-04.svg",
     "description": "Airy chiffon with house-made preserves and handfuls of fresh strawberry, no extracts.",
     "price_note": "From $65"
@@ -34,15 +42,19 @@
   {
     "id": "cake-05",
     "name": "Fresh Mango Chiffon",
-    "note": "Seasonally at it's best, made to order",
+    "note": "Seasonal, made to order",
+    "flavor_color": "#FFD870",
+    "card_width": 280,
     "image": "images/cake-05.svg",
-    "description": "Soft, sweet mango with fresh milk cream",
+    "description": "Soft, sweet mango with fresh milk cream.",
     "price_note": "From $70"
   },
   {
     "id": "cake-06",
     "name": "Shokupan",
     "note": "Japanese milk bread",
+    "flavor_color": "#EEDFC8",
+    "card_width": 240,
     "image": "images/cake-06.svg",
     "description": "Pillowy, stringy milk bread. Best eaten the day it's made.",
     "price_note": "From $9"
@@ -51,16 +63,20 @@
     "id": "cake-07",
     "name": "Lemon Raspberry Chiffon",
     "note": "Bright, tart, summery",
+    "flavor_color": "#E8F0A0",
+    "card_width": 300,
     "image": "images/cake-07.svg",
-    "description": "Our airy chiffon with our house-made lemon curd and raspberry preserves",
+    "description": "Airy chiffon with house-made lemon curd and raspberry preserves.",
     "price_note": "From $65"
   },
   {
     "id": "cake-08",
     "name": "Matcha Basque",
     "note": "Imported matcha from Japan",
+    "flavor_color": "#B8D4A0",
+    "card_width": 300,
     "image": "images/cake-08.svg",
-    "description": "All the malted character of matcha in a barely-set basque — warm, bitter-edged, good.",
+    "description": "All the malted character of matcha in a barely-set basque, warm, bitter-edged, good.",
     "price_note": "From $65"
   }
 ]
