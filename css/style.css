@@ -463,160 +463,222 @@ h1, h2, h3, h4, h5, h6 {
   .hero { min-height: 80vh; }
 }
 
-/* ─── Featured bakes handscroll ─── */
-.handscroll {
+/* ─── Featured bakes wheel gallery ─── */
+.wheel-section {
   position: relative;
   background: #f5f2ec;
 }
 
-.handscroll-sticky {
+.wheel-sticky {
   position: sticky;
   top: 0;
   height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: var(--sp-md);
+  gap: 2rem;
 }
 
-.handscroll-hint {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  margin-top: var(--sp-sm);
-  opacity: 0.6;
-  letter-spacing: 0.02em;
-}
+.wheel-head { text-align: center; }
 
-.handscroll-viewport {
+/* 3-D scene — perspective set here, preserved through ring → spoke → card */
+.wheel-scene {
+  position: relative;
   width: 100%;
-  overflow: hidden;
-  padding-top: 8px;
-  margin-top: -8px;
+  height: 480px;
+  perspective: 2000px;
+  perspective-origin: 50% 50%;
 }
 
-.handscroll-track {
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-end;
+.wheel-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
   will-change: transform;
-  padding-left: max(var(--sp-md), calc((100% - var(--max-w)) / 2 + var(--sp-md)));
-  padding-right: 20vw;
 }
 
-/* width controlled inline via card_width from JSON */
-.handscroll-card {
-  flex: 0 0 auto;
+/* each spoke places one card at its angle on the ring */
+.wheel-spoke {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+
+.wheel-card {
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  left: -120px;   /* center horizontally: -width/2 */
+  top: -170px;    /* center vertically: -height/2  */
+  transform: translateZ(420px);
   background: #fff;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(107, 45, 62, 0.07);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 14px rgba(107, 45, 62, 0.09);
 }
 
-/* flavor zone — background-color set via --flavor CSS custom property */
-.handscroll-card-img {
-  overflow: hidden;
-  background-color: var(--flavor, #f0ece4);
-  height: 320px;
+/* flavor zone — background set from --flavor custom property via inline style */
+.wheel-card-img {
+  flex: 0 0 195px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--flavor, #f0ece4);
+  overflow: hidden;
 }
 
-.handscroll-card:nth-child(3n+1) .handscroll-card-img { height: 360px; }
-.handscroll-card:nth-child(3n+2) .handscroll-card-img { height: 278px; }
-
-.handscroll-card-img img {
-  width: 72%;
-  height: 72%;
+.wheel-card-img img {
+  width: 70%;
+  height: 70%;
   object-fit: contain;
   display: block;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.handscroll-card-body {
-  padding: 1.1rem 1.4rem 1.5rem;
+.wheel-card-body {
+  flex: 1;
+  padding: 0.9rem 1.1rem 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.handscroll-card-name {
+.wheel-card-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 500;
   font-style: italic;
   line-height: 1.2;
   color: var(--dark-burgundy);
 }
 
-.handscroll-card-desc {
-  font-size: 0.8rem;
+.wheel-card-desc {
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  line-height: 1.55;
-  margin-top: 0.45rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  margin-top: 0.35rem;
+  flex: 1;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.handscroll-card-price {
-  font-size: 0.72rem;
+.wheel-card-price {
+  font-size: 0.68rem;
   letter-spacing: 0.05em;
   color: var(--text-secondary);
-  margin-top: 0.65rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
 }
 
-@media (hover: hover) {
-  .handscroll-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 28px rgba(107, 45, 62, 0.11);
-  }
-  .handscroll-card:hover .handscroll-card-img img { transform: scale(1.07); }
+.wheel-loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-size: 0.88rem;
 }
 
-/* Mobile: native horizontal swipe, no scroll-driven transform */
+/* Mobile: flat horizontal swipe, no 3D */
 @media (max-width: 768px) {
-  .handscroll { height: auto !important; }
-  .handscroll-sticky {
+  .wheel-section { height: auto !important; }
+  .wheel-sticky {
     position: static;
     height: auto;
     overflow: visible;
     padding-block: var(--sp-lg);
+    align-items: flex-start;
   }
-  .handscroll-viewport {
+  .wheel-scene {
+    height: auto;
+    perspective: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     touch-action: pan-x;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--sp-sm);
   }
-  .handscroll-track {
+  .wheel-ring {
+    position: static;
+    display: flex;
+    gap: 1rem;
     transform: none !important;
+    transform-style: flat;
+    width: max-content;
+    height: auto;
     padding-inline: var(--sp-md);
-    gap: var(--sp-sm);
-    align-items: stretch;
   }
-  .handscroll-card { scroll-snap-align: start; }
-  .handscroll-hint { display: none; }
+  .wheel-spoke {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    transform-style: flat;
+  }
+  .wheel-card {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    scroll-snap-align: start;
+    height: auto;
+  }
+  .wheel-card-img { flex: 0 0 180px; }
 }
 
-/* Reduced motion: same native-scroll fallback, no pinning */
+/* Reduced motion: same flat fallback */
 @media (prefers-reduced-motion: reduce) {
-  .handscroll { height: auto !important; }
-  .handscroll-sticky {
+  .wheel-section { height: auto !important; }
+  .wheel-sticky {
     position: static;
     height: auto;
     overflow: visible;
     padding-block: var(--sp-lg);
+    align-items: flex-start;
   }
-  .handscroll-viewport { overflow-x: auto; }
-  .handscroll-track {
+  .wheel-scene {
+    height: auto;
+    perspective: none;
+    overflow-x: auto;
+  }
+  .wheel-ring {
+    position: static;
+    display: flex;
+    gap: 1rem;
     transform: none !important;
+    transform-style: flat;
+    width: max-content;
+    height: auto;
     padding-inline: var(--sp-md);
-    align-items: stretch;
   }
-  .handscroll-hint { display: none; }
+  .wheel-spoke {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    transform-style: flat;
+  }
+  .wheel-card {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    height: auto;
+  }
+  .wheel-card-img { flex: 0 0 180px; }
 }
 
 /* ─── Reveal animations (pre-staged for later tasks) ─── */

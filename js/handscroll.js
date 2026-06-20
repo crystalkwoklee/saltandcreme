@@ -1,69 +1,92 @@
-/* ─── Featured bakes handscroll ───
-   Vertical scroll drives horizontal glide of the card track via GSAP ScrollTrigger.
-   The outer section is sized tall; the inner sticky viewport is pinned via CSS and
-   the track is translated in X as scrub progress.
-   Mobile (≤768px) & reduced-motion: native horizontal swipe (CSS). */
+/* ─── Featured bakes wheel gallery ───
+   Vertical scroll rotates a 3D ring of cake cards via GSAP ScrollTrigger.
+   Each card sits on a spoke at its angle on the ring; JS drives ring rotation
+   and per-spoke opacity to emphasise the front card.
+   Mobile (≤768px) & reduced-motion: flat horizontal swipe (CSS). */
 (function () {
-  const section  = document.getElementById('featured');
+  const section = document.getElementById('featured');
   if (!section) return;
 
-  const track    = document.getElementById('handscroll-track');
-  const viewport = section.querySelector('.handscroll-viewport');
-  if (!track || !viewport) return;
+  const ring = document.getElementById('wheel-ring');
+  if (!ring) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile       = window.matchMedia('(max-width: 768px)');
-  let st = null;
 
-  function initScrollDrive() {
+  const RADIUS      = 420;   // px — ring radius (translateZ on each card)
+  const SCROLL_PX   = 2400;  // extra px to scroll through one full rotation
+
+  let st     = null;
+  let spokes = [];
+
+  /* Opacity: front card = 1.0, back card = 0.28. Smooth cosine curve. */
+  function updateOpacities(ringDeg) {
+    const N = spokes.length;
+    const step = 360 / N;
+    spokes.forEach((spoke, i) => {
+      const worldAngle   = ((i * step + ringDeg) % 360 + 360) % 360;
+      const distFromFront = Math.min(worldAngle, 360 - worldAngle); // 0–180
+      const t = (1 + Math.cos(distFromFront * Math.PI / 180)) / 2;  // 1→0
+      spoke.style.opacity = (0.28 + 0.72 * t).toFixed(3);
+    });
+  }
+
+  function initWheel() {
     if (st) { st.kill(); st = null; }
     section.style.height = '';
-    track.style.transform = '';
+    ring.style.transform  = '';
+    spokes.forEach(s => { s.style.opacity = ''; });
 
     if (reduceMotion.matches || mobile.matches) return;
 
-    const maxX = Math.max(track.scrollWidth - viewport.clientWidth, 0);
-    if (maxX <= 0) return;
-
-    section.style.height = (window.innerHeight + maxX) + 'px';
+    section.style.height = (window.innerHeight + SCROLL_PX) + 'px';
+    updateOpacities(0);
 
     st = ScrollTrigger.create({
       trigger: section,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.6,
+      start:   'top top',
+      end:     'bottom bottom',
+      scrub:   0.9,
       onUpdate(self) {
-        track.style.transform =
-          `translate3d(${(-maxX * self.progress).toFixed(1)}px,0,0)`;
+        const deg = -(self.progress * 360);
+        ring.style.transform = `rotateY(${deg}deg)`;
+        updateOpacities(deg);
       }
     });
   }
 
-  async function buildCards() {
+  async function buildWheel() {
     const data = await fetchJSON('content/gallery.json');
     if (!data) {
-      renderError(track, "Couldn't load featured bakes. Please refresh.");
+      renderError(ring, "Couldn't load featured bakes. Please refresh.");
       return;
     }
 
-    track.innerHTML = data.map(c => `
-      <article class="handscroll-card" style="--flavor:${c.flavor_color};width:${c.card_width}px;">
-        <div class="handscroll-card-img">
-          <img src="${c.image}" alt="${c.name}" loading="lazy" width="400" height="400">
-        </div>
-        <div class="handscroll-card-body">
-          <h3 class="handscroll-card-name">${c.name}</h3>
-          <p class="handscroll-card-desc">${c.description}</p>
-          <p class="handscroll-card-price">${c.price_note}</p>
-        </div>
-      </article>`).join('');
+    const N    = data.length;
+    const step = 360 / N;
 
-    requestAnimationFrame(initScrollDrive);
+    ring.innerHTML = data.map((c, i) => `
+      <div class="wheel-spoke" style="transform:rotateY(${i * step}deg);">
+        <article class="wheel-card" style="--flavor:${c.flavor_color};">
+          <div class="wheel-card-img">
+            <img src="${c.image}" alt="${c.name}" loading="lazy" width="400" height="400">
+          </div>
+          <div class="wheel-card-body">
+            <h3 class="wheel-card-name">${c.name}</h3>
+            <p class="wheel-card-desc">${c.description}</p>
+            <p class="wheel-card-price">${c.price_note}</p>
+          </div>
+        </article>
+      </div>`).join('');
+
+    spokes = Array.from(ring.querySelectorAll('.wheel-spoke'));
+
+    requestAnimationFrame(initWheel);
   }
 
-  window.addEventListener('resize', initScrollDrive);
-  if (mobile.addEventListener) mobile.addEventListener('change', initScrollDrive);
-  if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', initScrollDrive);
+  window.addEventListener('resize', initWheel);
+  if (mobile.addEventListener)      mobile.addEventListener('change', initWheel);
+  if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', initWheel);
 
-  buildCards();
+  buildWheel();
 })();
