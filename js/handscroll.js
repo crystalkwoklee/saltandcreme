@@ -69,7 +69,7 @@
       <div class="wheel-spoke" style="transform:rotateY(${i * step}deg);">
         <article class="wheel-card" style="--flavor:${c.flavor_color};">
           <div class="wheel-card-img">
-            <img src="${c.image}" alt="${c.name}" loading="lazy" width="400" height="400">
+            <img src="${c.image}" alt="${c.name}" loading="eager" width="400" height="400">
           </div>
           <div class="wheel-card-body">
             <h3 class="wheel-card-name">${c.name}</h3>
@@ -81,7 +81,7 @@
 
     spokes = Array.from(ring.querySelectorAll('.wheel-spoke'));
 
-    requestAnimationFrame(initWheel);
+    initWheel();
   }
 
   window.addEventListener('resize', initWheel);
